@@ -11,22 +11,31 @@ const Navbar = ({ category, setCategory }) => {
   return (
 
 <>
-<div className="shadow-lg flex justify-between items-center p-4 mb-6">
+<div className="shadow-lg flex flex-col sm:flex-row justify-between items-start p-4 mb-6">
 
-  <h1 className="text-3xl font-bold text-black">BookHaven</h1>
+  <h1 className="text-3xl font-bold text-black">
+    BookHaven
+  </h1>
 
-  <p className="text-gray-600 opacity-70">
+ {/* for mobile */}
+  <p className="text-gray-600 opacity-70 text-sm mt-1 sm:hidden">
+     Discover your next favorite story from our curated collection
+  </p>
+
+{/* for desktop */}
+  <p className="text-gray-600 opacity-70 text-base mt-1 hidden sm:block md:text-lg">
     Discover your next favorite story from our curated collection
   </p>
 
- 
   <h1
       onClick={() => navigate("/cart")}
-      className="text-2xl cursor-pointer hover:text-blue-600"
+      className="text-2xl cursor-pointer hover:text-blue-600 mt-2 sm:mt-0"
   >
       🛒 Cart
   </h1>
 </div>
+
+
     
     <nav className="bg-gradient-to-r from-gray-300 via-white to-gray-300 p-4">
 
