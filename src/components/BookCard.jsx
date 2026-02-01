@@ -52,7 +52,8 @@ const BookCard = ({ title, author, price, categories, rating, image, description
 const CardGrid = ({ books }) => {
   return (
     <div className="p-6">
-      <div className="grid grid-cols-3 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      {/* Mobile: 2 per row, Tablet: 2 per row, Desktop: 4 per row */}
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
         {books.map((book, index) => (
           <BookCard
             key={index}
