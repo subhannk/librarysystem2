@@ -29,11 +29,11 @@ const BookCard = ({ title, author, price, categories, rating, image, description
         </div>
       </div>
 
-      <div className="w-full h-80 rounded mb-4 mt-4 overflow-hidden">
+      <div className="w-full h-64 sm:h-72 md:h-80 rounded mb-4 mt-4 overflow-hidden">
         <img src={image} alt={title} className="w-full h-full object-cover" />
       </div>
 
-      <h2 className="font-bold text-lg mb-2 text-center">{title}</h2>
+      <h2 className="font-bold text-lg mb-1 text-center">{title}</h2>
       <p className="text-gray-600 text-sm mb-2 text-center">{author}</p>
       <p className="text-sm text-gray-600 line-clamp-3 mb-4">
         {description || "No description available."}
@@ -51,9 +51,9 @@ const BookCard = ({ title, author, price, categories, rating, image, description
 
 const CardGrid = ({ books }) => {
   return (
-    <div className="p-6">
+    <div className="p-4 sm:p-6">
       {/* Mobile: 2 per row, Tablet: 2 per row, Desktop: 4 per row */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
         {books.map((book, index) => (
           <BookCard
             key={index}
