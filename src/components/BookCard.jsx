@@ -9,55 +9,57 @@ const CATEGORY_IMAGES = {
   all: "https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=800&q=80",
 };
 
-const BookCard = ({ title, author, price, categories, rating, image, description }) => (
-  <div className="bg-white shadow-lg rounded-lg p-4 flex flex-col items-center w-full">
-    <div className="flex justify-between items-center w-full mb-2">
-      <button className="px-2 py-0 bg-white border border-gray-400 rounded-md">
-        {categories || "Fiction"}
-      </button>
+const BookCard = ({ title, author, price, categories, rating, image, description }) => {
+  return (
+    <div className="bg-white shadow-lg rounded-lg p-4 flex flex-col items-center w-full">
+      <div className="flex justify-between items-center w-full mb-2">
+        <button className="px-2 py-0 bg-white border border-gray-400 rounded-md">
+          {categories || "Fiction"}
+        </button>
 
-      <div className="flex items-center">
-        {Array.from({ length: 5 }, (_, i) => (
-          <span key={i} className="text-yellow-400">
-            {i < Math.round(rating || 0) ? "★" : "☆"}
+        <div className="flex items-center">
+          {Array.from({ length: 5 }, (_, i) => (
+            <span key={i} className="text-yellow-400">
+              {i < Math.round(rating || 0) ? "★" : "☆"}
+            </span>
+          ))}
+          <span className="text-gray-600 text-sm ml-2">
+            {rating ? `(${rating.toFixed(1)})` : "(No rating)"}
           </span>
-        ))}
-        <span className="text-gray-600 text-sm ml-2">
-          {rating ? `(${rating.toFixed(1)})` : "(No rating)"}
-        </span>
+        </div>
+      </div>
+
+      <div className="w-full h-80 rounded mb-4 mt-4 overflow-hidden">
+        <img src={image} alt={title} className="w-full h-full object-cover" />
+      </div>
+
+      <h2 className="font-bold text-lg mb-2 text-center">{title}</h2>
+      <p className="text-gray-600 text-sm mb-2 text-center">{author}</p>
+      <p className="text-sm text-gray-600 line-clamp-3 mb-4">
+        {description || "No description available."}
+      </p>
+
+      <div className="w-full flex justify-between items-center mt-auto">
+        <h2 className="font-bold text-lg">{price}</h2>
+        <button className="bg-black text-white px-4 py-1 rounded hover:bg-orange-500 transition-colors">
+          🛒 Add
+        </button>
       </div>
     </div>
-
-    <div className="w-full h-80 rounded mb-4 overflow-hidden">
-      <img src={image} alt={title} className="w-full h-full object-cover" />
-    </div>
-
-    <h2 className="font-bold text-lg mb-2 text-center">{title}</h2>
-    <p className="text-gray-600 text-sm mb-2 text-center">{author}</p>
-    <p className="text-sm text-gray-600 line-clamp-3 mb-4">{description || "No description available."}</p>
-
-    <div className="w-full flex justify-between items-center mt-auto">
-      <h2 className="font-bold text-lg">{price}</h2>
-      <button className="bg-black text-white px-4 py-1 rounded hover:bg-orange-500 transition-colors">
-        🛒 Add
-      </button>
-    </div>
-  </div>
-);
+  );
+};
 
 const CardGrid = ({ books }) => {
   return (
-    <div className="flex flex-wrap justify-center gap-6 p-6">
-      {books.map((book, index) => (
-        <div
-          key={index}
-          className="w-1/3 sm:w-1/2 lg:w-1/4"
-        >
+    <div className="p-6">
+      <div className="grid grid-cols-3 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {books.map((book, index) => (
           <BookCard
+            key={index}
             title={book.volumeInfo?.title}
             author={book.volumeInfo?.authors?.[0] || "Unknown"}
             categories={book.volumeInfo?.categories?.[0] || "Fiction"}
-            rating={book.volumeInfo?.averageRating}
+            rating={book.volumeInfo?.averageRating || 4.5}
             description={book.volumeInfo?.description}
             price={
               book.saleInfo?.listPrice
@@ -70,8 +72,8 @@ const CardGrid = ({ books }) => {
                 : CATEGORY_IMAGES["all"]
             }
           />
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 };
