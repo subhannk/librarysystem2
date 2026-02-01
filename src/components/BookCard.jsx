@@ -24,7 +24,7 @@ const CATEGORY_IMAGES = {
 };
 
 
- const BookCard = ({ title, author, price, categories, rating, image }) => {
+ const BookCard = ({ title, author, price, categories, rating, image,description }) => {
   return (
     <div className="bg-white shadow-lg rounded-lg p-4 flex flex-col items-center">
 
@@ -33,9 +33,16 @@ const CATEGORY_IMAGES = {
           {categories || "Fiction"}
         </button>
 
-        <p className="text-gray-600 text-sm">
-          {rating || "4.5"} <span className="text-yellow-400">★</span>
-        </p>
+       <div className="flex items-center">
+  {Array.from({ length: 5 }, (_, i) => (
+    <span key={i} className="text-yellow-400">
+      {i < Math.round(rating) ? "★" : "☆"}
+    </span>
+  ))}
+  <span className="text-gray-600 text-sm ml-2">
+    ({rating ? rating.toFixed(1) : "4.5"})
+  </span>
+</div>
       </div>
 
       
@@ -49,9 +56,10 @@ const CATEGORY_IMAGES = {
 
       <h2 className="font-bold text-lg mb-2">{title}</h2>
       <p className="text-gray-600 text-sm">{author}</p>
-      <p>
-        A masterpiece of American literature. The symbolism and prose are incredible
-      </p>
+     <p className="text-sm text-gray-600 line-clamp-3">
+  {description || "No description available."}
+</p>
+
 
       <div className="w-full flex justify-between items-center mt-auto">
         <h2 className="font-bold text-lg">{price}</h2>
@@ -74,7 +82,8 @@ const CardGrid = ({ books }) => {
             title={book.volumeInfo?.title}
             author={book.volumeInfo?.authors?.[0] || "Unknown"}
             categories={book.volumeInfo?.categories?.[0] || "Fiction"}
-            rating={book.volumeInfo?.averageRating}
+            rating={book.volumeInfo?.averageRating || 4.5}
+            description={book.volumeInfo?.description} 
             price={
               book.saleInfo?.listPrice
                 ? `$${book.saleInfo.listPrice.amount}`
