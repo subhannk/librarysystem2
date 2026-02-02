@@ -18,15 +18,15 @@ const BookCard = ({ title, author, price, categories, rating, image, description
         </button>
 
         <div className="flex items-center">
-          {Array.from({ length: 5 }, (_, i) => (
-            <span key={i} className="text-yellow-400">
-              {i < Math.round(rating || 0) ? "★" : "☆"}
-            </span>
-          ))}
-          <span className="text-gray-600 text-sm ml-2">
-            {rating ? `(${rating.toFixed(1)})` : "(No rating)"}
-          </span>
-        </div>
+  <span className="text-yellow-400 text-lg">
+    ★
+  </span>
+
+  <span className="text-gray-600 text-sm ml-2">
+    {rating ? rating.toFixed(1) : "No rating"}
+  </span>
+</div>
+
       </div>
 
       <div className="w-full h-64 sm:h-72 md:h-80 rounded mb-4 mt-4 overflow-hidden">
