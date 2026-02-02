@@ -6,7 +6,7 @@ const CATEGORY_IMAGES = {
   pets: "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?auto=format&fit=crop&w=800&q=80",
   psychology: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=800&q=80",
   humor: "https://images.unsplash.com/photo-1531746790731-6c087fecd65a?auto=format&fit=crop&w=800&q=80",
-  all: "https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=800&q=80",
+all: "https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=800&q=80",
 };
 
 const BookCard = ({ title, author, price, categories, rating, image, description }) => {
@@ -14,7 +14,7 @@ const BookCard = ({ title, author, price, categories, rating, image, description
     <div className="bg-white shadow-lg rounded-lg p-4 flex flex-col items-center w-full">
       <div className="flex justify-between items-center w-full mb-2">
         <button className="px-2 py-0 bg-white border border-gray-400 rounded-md">
-          {categories || "Fiction"}
+          {categories || "All Books"}
         </button>
 
         <div className="flex items-center">

@@ -7,7 +7,7 @@ import Footer from "./components/Footer";
 
 const API_KEY = "AIzaSyAZeCJXokas2EqiZyXEQIU_zSgIKl4qkl0";
 const URLS = {
-  all: `https://www.googleapis.com/books/v1/volumes?q=&key=${API_KEY}&maxResults=40&startIndex=0`,
+ all: `https://www.googleapis.com/books/v1/volumes?q=a&key=${API_KEY}&maxResults=40&startIndex=0`,
   fiction: `https://www.googleapis.com/books/v1/volumes?q=subject:fiction&key=${API_KEY}&maxResults=40&startIndex=0`,
   drama: `https://www.googleapis.com/books/v1/volumes?q=subject:drama&key=${API_KEY}&maxResults=40&startIndex=0`,
   pets: `https://www.googleapis.com/books/v1/volumes?q=subject:pets&key=${API_KEY}&maxResults=40&startIndex=0`,
